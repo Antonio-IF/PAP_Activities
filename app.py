@@ -6,12 +6,17 @@ from utils import make_prediction, handle_new_data, load_model
 app = Flask(__name__)
 
 # Load the initial model
-model_path = 'models/best_models/Random_Classifier/random_forest_model.pkl'
+model_path = 'best_models/Random_Classifier/random_forest_model.pkl'
 current_model = load_model(model_path)
 
 # Initialize variables for tracking new data
 new_data_count = 0
 collected_data = pd.DataFrame(columns=[f'X{i}' for i in range(1, 24)])
+
+# Home route
+@app.route('/', methods=['GET'])
+def home():
+    return "Welcome to the Prediction API! Use the /predict endpoint to get predictions."
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -34,7 +39,8 @@ def predict():
         collected_data = pd.DataFrame(columns=[f'X{i}' for i in range(1, 24)])  # Reset collected data
         new_data_count = 0
     
-    return jsonify({'Y': prediction[0]})
+    # Convert prediction to a regular int for JSON serialization
+    return jsonify({'Y': int(prediction[0])})
 
 if __name__ == '__main__':
     app.run(debug=True)
