@@ -13,13 +13,13 @@ def main():
 
     # Split the dataset into training and test sets
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, 
-                                                        test_size=0.255555,
+                                                        test_size=0.30,
                                                         random_state=0)
     
     # Defining the parameter grid for XGBoost
     param_grid = {
         'n_estimators': [300, 600, 900],
-        'max_depth': [15, 40, 75],
+        'max_depth': [20, 40, 90],
         'learning_rate': [0.01, 0.1, 0.7],
         'subsample': [0.6, 0.8, 1.0],
         'colsample_bytree': [0.6, 0.8, 1.0],
@@ -34,11 +34,11 @@ def main():
     random_search = RandomizedSearchCV(
         estimator=model,
         param_distributions=param_grid,
-        n_iter=20,  # Number of different combinations to try
+        n_iter=100,  # Number of different combinations to try
         scoring='roc_auc',
         n_jobs=-1,
-        cv=3,  # 3-fold cross-validation
-        verbose=1,
+        cv=7,  # 7-fold cross-validation
+        verbose=2,
         random_state=0
     )
 
