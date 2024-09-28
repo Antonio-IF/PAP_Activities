@@ -8,16 +8,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import  accuracy_score, f1_score
 
 
-
-
 def main():
     data = pd.read_csv('data/credit_train.csv')
     X = data.drop('Y', axis=1)
     Y = data['Y']
 
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, 
-                                                        test_size=0.25,
-                                                        random_state=1234)
+                                                        test_size=0.255555,
+                                                        random_state=0)
 
     model = LogisticRegression().fit(X_train,Y_train)
 
