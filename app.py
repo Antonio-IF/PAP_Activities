@@ -6,7 +6,7 @@ import pandas as pd
 
 app = FastAPI()
 
-model = pickle.load(open('ML_OPS/models/logistic.pkl', 'rb'))
+model = pickle.load(open('models/logistic.pkl', 'rb'))
 
 @app.get('/')
 # Example to use http://127.0.0.1:1234/?name=Tony

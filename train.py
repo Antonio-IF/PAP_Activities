@@ -11,7 +11,7 @@ from sklearn.metrics import  accuracy_score, f1_score
 
 
 def main():
-    data = pd.read_csv('ML_OPS/data/credit_train.csv')
+    data = pd.read_csv('data/credit_train.csv')
     X = data.drop('Y', axis=1)
     Y = data['Y']
 
@@ -36,7 +36,7 @@ def main():
     print('Accuracy test:', accuracy_test)
 
     # Saving our model
-    with open('ML_OPS/models/logistic.pkl',  'wb') as file:
+    with open('models/logistic.pkl',  'wb') as file:
         pickle.dump(model, file)
 
 
