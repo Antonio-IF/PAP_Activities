@@ -1,38 +1,40 @@
-from fastapi import FastAPI
-import uvicorn
-import pickle
-import numpy as np
+from flask import Flask, request, jsonify
 import pandas as pd
+import pickle
+from utils import make_prediction, handle_new_data, load_model
 
-app = FastAPI()
+app = Flask(__name__)
 
-model = pickle.load(open('models/logistic.pkl', 'rb'))
+# Load the initial model
+model_path = 'models/best_models/Random_Classifier/random_forest_model.pkl'
+current_model = load_model(model_path)
 
-@app.get('/')
-# Example to use http://127.0.0.1:1234/?name=Tony
-def greet(name: str):
-    return{
-        'message': f'Greetings,  {name}!'
-    }
+# Initialize variables for tracking new data
+new_data_count = 0
+collected_data = pd.DataFrame(columns=[f'X{i}' for i in range(1, 24)])
 
-@app.get('/health')
-def health_check():
-    return {
-        'status': 'ok'
-    }
-
-@app.post('/predict')
-def predict(data: list[float]):
-    X = [{
-        f"X{i+1}": x
-        for i, x in enumerate(data)
-    }]
-
-    df = pd.DataFrame.from_records(X)
-    prediction = model.predict(df)
-    return {
-        'prediction': int(prediction[0])
-    }
+@app.route('/predict', methods=['POST'])
+def predict():
+    global current_model, new_data_count, collected_data
+    
+    # Get data from the request
+    input_data = request.json
+    data = pd.DataFrame(input_data, index=[0])
+    
+    # Make prediction using the current model
+    prediction = make_prediction(current_model, data)
+    
+    # Add the new data to the collected data
+    collected_data = pd.concat([collected_data, data], ignore_index=True)
+    new_data_count += 1
+    
+    # Check if we have collected 1000 new data points
+    if new_data_count >= 1000:
+        current_model = handle_new_data(collected_data, current_model)
+        collected_data = pd.DataFrame(columns=[f'X{i}' for i in range(1, 24)])  # Reset collected data
+        new_data_count = 0
+    
+    return jsonify({'Y': prediction[0]})
 
 if __name__ == '__main__':
-    uvicorn.run('app:app', host='127.0.0.1', port=1234, reload=True)
+    app.run(debug=True)
