@@ -9,7 +9,7 @@ from sklearn.metrics import f1_score, accuracy_score, roc_auc_score, roc_curve
 
 def main():
     """
-    MAIN FUNCTION TO TRAIN AND OPTIMIZE AN XGBOOST CLASSIFIER.
+    Main function to train and optimize an xgboost classifier.
     """
     
     # LOAD THE DATASET FROM CSV FILE

@@ -8,7 +8,7 @@ from sklearn.metrics import accuracy_score, f1_score
 
 def main():
     """
-    MAIN FUNCTION TO TRAIN A LOGISTIC REGRESSION MODEL.
+    Main function to train a logistic regression model.
     """
     
     # LOAD THE DATASET FROM CSV FILE

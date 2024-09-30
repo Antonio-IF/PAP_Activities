@@ -20,7 +20,7 @@ Y_original = data['Y']
 
 def train_initial_model(X, Y):
     """
-    TRAINS THE INITIAL XGBOOST MODEL WITH THE ORIGINAL DATA.
+    Trains the initial xgboost model with the original data.
     
     Args:
     X (DataFrame): Feature data.
@@ -75,7 +75,7 @@ def train_initial_model(X, Y):
 
 def perform_statistical_tests(X_old, X_new):
     """
-    PERFORMS STATISTICAL TESTS TO DETECT SIGNIFICANT CHANGES BETWEEN OLD AND NEW DATA.
+    Performs statistical tests to detect significant changes between old and new data.
     
     Args:
     X_old (DataFrame): Original feature data.
@@ -111,7 +111,7 @@ def perform_statistical_tests(X_old, X_new):
 
 def retrain_model_if_needed(model, X_old, Y_old, X_new, Y_new):
     """
-    RETRAINS THE MODEL IF SIGNIFICANT CHANGES ARE DETECTED IN THE DATA DISTRIBUTION.
+    Retrains the model if significant changes are detected in the data distribution.
     
     Args:
     model (XGBClassifier): CURRENT MODEL.
@@ -144,7 +144,7 @@ def retrain_model_if_needed(model, X_old, Y_old, X_new, Y_new):
 
 def handle_new_data(new_data, current_model, X_current, Y_current):
     """
-    HANDLES NEW DATA BY CHECKING FOR DATA DISTRIBUTION CHANGES AND RETRAINING THE MODEL IF NECESSARY.
+    Handles new data by checking for data distribution changes and retraining the model if necessary.
     
     Args:
     new_data (DataFrame): NEW DATA RECEIVED FOR PREDICTION.
@@ -173,6 +173,7 @@ def handle_new_data(new_data, current_model, X_current, Y_current):
 def main():
     """
     MAIN FUNCTION TO SIMULATE RECEIVING NEW DATA AND MANAGING MODEL RETRAINING.
+    Main function to simulate receiving new data and
     """
     
     # TRAIN THE INITIAL MODEL WITH ORIGINAL DATA
