@@ -20,8 +20,14 @@ collected_data = pd.DataFrame(columns=[f'X{i}' for i in range(1, 24)])
 # HOME ROUTE (DEFAULT ENDPOINT)
 @app.route('/', methods=['GET'])
 def home():
+    """
+    Health check endpoint to verify if the API is running.
+    
+    Returns:
+    JSON: A message indicating the API status and a status code of 200.
+    """
 
-    return "Welcome to the Prediction API! Use the /predict endpoint to get predictions."
+    return jsonify({'status': 'API is running'}), 200
 
 # ------------------------------
 
