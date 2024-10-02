@@ -35,8 +35,18 @@ def make_prediction(model, data):
     array: The predicted class or value from the model.
     """
 
-    # MAKE A PREDICTION USING THE PROVIDED MODEL AND INPUT DATA
-    return model.predict(data)
+    print("Data received for prediction:")
+    print(data.head())
+
+    try:
+        prediction = model.predict(data)
+        print("Prediction made successfully:", prediction)
+
+    except Exception as e:
+        print(f"Error during prediction: {e}")
+        prediction = None
+
+    return prediction
 
 # ------------------------------
 
