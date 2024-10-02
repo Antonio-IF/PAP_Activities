@@ -94,6 +94,6 @@ You can test the API using the provided user.py script, which sends a prediction
 
 The project applies Chi-Squared and Kolmogorov-Smirnov tests to determine whether there is a significant shift in the data distribution. If the tests fail, a message is printed, and the model continues using the existing data until a shift is detected.
 
-## License:
+## License
 
 This project is licensed under the MIT License.
