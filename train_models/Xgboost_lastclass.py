@@ -172,8 +172,7 @@ def handle_new_data(new_data, current_model, X_current, Y_current):
 
 def main():
     """
-    MAIN FUNCTION TO SIMULATE RECEIVING NEW DATA AND MANAGING MODEL RETRAINING.
-    Main function to simulate receiving new data and
+    Main function to simulate receiving new data and managing model retraining.
     """
     
     # TRAIN THE INITIAL MODEL WITH ORIGINAL DATA
